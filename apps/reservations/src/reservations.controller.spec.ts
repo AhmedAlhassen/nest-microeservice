@@ -1,3 +1,4 @@
+import { AUTH_SERVICE } from '@app/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { ReservationsController } from './reservations.controller';
 import { ReservationsService } from './reservations.service';
@@ -11,18 +12,22 @@ describe('ReservationsController', () => {
       providers: [
         {
           provide: ReservationsService,
-          useFactory: (reservationsRepository: any) =>
-            new ReservationsService(reservationsRepository),
-          inject: ['ReservationsRepository'],
-        },
-        {
-          provide: 'ReservationsRepository',
           useValue: {
-            findAll: jest.fn(), // Mock any methods used by ReservationsService
-            findOne: jest.fn(),
             create: jest.fn(),
+            findAll: jest.fn(),
+            findOne: jest.fn(),
             update: jest.fn(),
             remove: jest.fn(),
+          },
+        },
+        {
+          provide: AUTH_SERVICE,
+          useValue: {
+            send: jest.fn().mockReturnValue({
+              pipe: jest.fn().mockReturnValue({
+                subscribe: jest.fn(),
+              }),
+            }),
           },
         },
       ],
