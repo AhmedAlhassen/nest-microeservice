@@ -16,9 +16,6 @@ export class ReservationDocumnet extends AbstractDocumnet {
   userId: string;
 
   @Prop()
-  placeId: string;
-
-  @Prop()
   invoiceId: string;
 }
 
