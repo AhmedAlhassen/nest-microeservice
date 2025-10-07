@@ -24,10 +24,7 @@ export class ReservationsController {
     @Body() createReservationDto: CreateReservationDto,
     @common.CurrentUser() user: common.UserDto,
   ) {
-    return await this.reservationsService.create(
-      createReservationDto,
-      user._id,
-    );
+    return await this.reservationsService.create(createReservationDto, user);
   }
 
   @UseGuards(JwtAuthGuard)

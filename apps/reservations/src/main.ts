@@ -14,6 +14,6 @@ async function bootstrap() {
   app.useLogger(app.get(Logger));
   const configService = app.get(ConfigService);
 
-  await app.listen(configService.get('PORT') ?? 3000);
+  await app.listen(configService.get('HTTP_PORT') ?? 3000);
 }
 void bootstrap();
