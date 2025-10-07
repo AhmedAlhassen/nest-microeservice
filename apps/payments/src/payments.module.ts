@@ -1,4 +1,4 @@
-import { DatabaseModule, LoggerModule } from '@app/common';
+import { LoggerModule } from '@app/common';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
@@ -18,7 +18,6 @@ import { PaymentsService } from './payments.service';
         STRIPE_SECRET_KEY: Joi.string().required(),
       }),
     }),
-    DatabaseModule,
   ],
   controllers: [PaymentsController],
   providers: [PaymentsService],
